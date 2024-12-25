@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "npm run dev",
+    "start": "concurrently \"npm run dev\" \"npm run pb\"",
     "build": "nuxt build",
     "dev": "nuxt dev -o",
     "generate": "nuxt generate",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
+    "concurrently": "^9.1.0",
     "nuxt": "^3.9.0",
     "nuxt-icon": "^0.6.8",
     "postcss": "^8.4.32",
