@@ -10,8 +10,8 @@
 }
 
 :root, :before, :after, * {
-  --vf-primary: #9370DB;
-  --vf-primary-darker: #7B68EE;
+  --vf-primary: theme('colors.primary.DEFAULT');
+  --vf-primary-darker: theme('colors.primary.dark');
 }
 
 @keyframes fadeInUp {

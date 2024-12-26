@@ -35,6 +35,7 @@ export default {
   },
   darkMode: 'class', // Disable automatic dark mode
   plugins: [
-    require("@tailwindcss/typography")
+    require("@tailwindcss/typography"),
+    require('@vueform/vueform/tailwind')
   ],
 };

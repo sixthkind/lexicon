@@ -1,6 +1,6 @@
 {
   "name": "@hewmanitarian/launchpad",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "type": "module",
   "scripts": {
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@fontsource/quicksand": "^5.1.0",
+    "@vueform/nuxt": "^1.8.0",
     "pocketbase": "^0.22.1"
   }
 }
