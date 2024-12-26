@@ -27,7 +27,7 @@
     </div>
 
     <br/>
-    <span class="font-mono text-slate-300 text-sm float-right">koala:v{{ version }}</span>
+    <span class="font-mono text-slate-300 text-sm float-right">_template:v{{ version }}</span>
   </div>
 
 </div>
