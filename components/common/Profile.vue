@@ -56,7 +56,7 @@
       </div>
 
       <br/>
-      <span class="font-mono text-slate-300 text-sm float-right">_template:v{{ version }}</span>
+      <span class="font-mono text-slate-300 text-sm float-right">_launchpad:v{{ version }}</span>
     </div>
   </div>
 </div>
