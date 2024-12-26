@@ -35,8 +35,6 @@
           </div>
 
           <div v-if="pb.authStore.isValid" class="hidden md:flex bg-white bg-opacity-70 backdrop-blur mt-3 rounded-2xl border p-2 flex items-center">
-
-            <div class="w-4 h-4 rounded-full bg-slate-300 mr-2"></div>
             <a href="/profile">
               <span class="font-bold text-primary">{{ emailUsername }}</span>
               <span class="font-bold text-slate-400">@{{ emailDomain }}</span>

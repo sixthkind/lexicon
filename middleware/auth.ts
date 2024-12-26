@@ -9,11 +9,12 @@ If the user is authenticated and not verified, only page allowed is auth/verify
 */
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  console.log('auth middleware pb.authStore.isValid: ', pb.authStore.isValid);
   const isAuthenticated = pb.authStore.isValid;
+
+  // Set to true to bypass check.
   const isVerified = pb.authStore.record?.verified;
-  const isOnboarded = pb.authStore.record?.isOnboarded;
-  const isApproved = pb.authStore.record?.isApproved;
+  const isOnboarded = true;
+  const isApproved = true;
 
   // account for possible extra backslash at end of routes
   const authPathRegex = /^\/auth\/?$/;

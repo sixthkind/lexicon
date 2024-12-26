@@ -20,9 +20,9 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: '#9370DB', // Lavender
-          light: '#E6E6FA',   // Light variant
-          dark: '#7B68EE',    // Dark variant
+          DEFAULT: '#59c3c8', // Lavender
+          light: '#a4f2f6',   // Light variant
+          dark: '#3b8e94',    // Dark variant
         },
         success: '#3ecd64',
         completed: '#3ea4cd',
