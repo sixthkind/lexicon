@@ -22,15 +22,23 @@
 
   <div class="flex items-center justify-center">
     <div class="p-8 w-full rounded-lg k-item animated fadeInUp">
+      <div class="flex flex-col items-center mb-6 pt-8">
+        <div v-if="pb.authStore.record?.avatar">
+          <img 
+            :src="pb.files.getURL(pb.authStore.record, pb.authStore.record.avatar, {'thumb': '300x300'})"
+            :alt="pb.authStore.record?.name || 'Profile'"
+            class="w-24 h-24 rounded-full object-cover border-4 mb-3"
+          />
+        </div>
+        <div v-else class="w-24 h-24 rounded-full border-4 mb-3 bg-primary bg-opacity-10 flex items-center justify-center">
+          <Icon name="lucide:user-round" size="3em" class="text-primary" />
+        </div>
+        <h3 v-if="pb.authStore.record?.name" class="text-xl font-bold text-slate-500">
+          {{ pb.authStore.record?.name }}
+        </h3>
+      </div>
 
       <div class="flex flex-col gap-3 mx-auto px-6">
-        <p v-if="pb.authStore.record?.name" class="text-lg leading-relaxed text-slate-500">
-          <span class="flex items-center gap-2"> 
-            <b>Name</b>
-          </span>
-          {{ pb.authStore.record?.name }} 
-        </p>
-
         <p class="text-lg leading-relaxed text-slate-500">
           <span class="flex items-center gap-2"> 
             <b>Email</b>
