@@ -1,13 +1,22 @@
 # _launchpad
 
-_launchpad is a full stack project starting place.  
-Ready to go, and self contained.
+_launchpad is a full stack starting place.  
+Ready to go, self contained.
 
-Built on open-source self-hostable tech.
+## Demo
+Theres a hosted demo of the template here:  
+[Demo](https://launchpad.hewmanitarian.com)   
+
+Login:  
+demo@example.com  demo1234
+
+## Features
+
+Built on open-source self-hostable technology:
 - Nuxt 3
 - Pocketbase
-- Tailwind
-- n8n
+- Tailwind css
+- vueform
 
 Everything to get moving quickly:
 - User authentication
