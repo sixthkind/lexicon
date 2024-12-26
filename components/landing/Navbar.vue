@@ -24,7 +24,7 @@ const open = ref(false);
 
         <div class="bg-white bg-opacity-50 backdrop-blur mt-3 rounded-2xl border p-2">
           <a href="/">
-            <span class="font-bold text-primary">_</span><span class="font-bold text-slate-400">template</span>
+            <span class="font-bold text-primary">_</span><span class="font-bold text-slate-400">launchpad</span>
           </a>
         </div>
       </div>
