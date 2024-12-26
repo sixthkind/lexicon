@@ -9,7 +9,7 @@ If the user is authenticated and not verified, only page allowed is auth/verify
 */
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  console.log('auth middleware: ', pb.authStore.isValid);
+  console.log('auth middleware pb.authStore.isValid: ', pb.authStore.isValid);
   const isAuthenticated = pb.authStore.isValid;
   const isVerified = pb.authStore.record?.verified;
   const isOnboarded = pb.authStore.record?.isOnboarded;

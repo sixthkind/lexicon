@@ -53,7 +53,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { authUtils } from '#imports';
+import { authUtils, pb } from '#imports';
 
 const isSignIn = ref(true);
 const email = ref('');
@@ -90,12 +90,16 @@ function validatePassword() {
 
 async function signUp() {
   if (validatePassword()) {
+    console.log('signUp', email.value, password.value);
     try {
       let message = await authUtils.register({
         email: email.value, 
         password: password.value
       });
-      window.location.href = '/';
+
+      console.log('signUp success: ', message);
+      console.log('pb.authStore.record: ', pb.authStore.record);
+      // window.location.href = '/';
     } catch (err) {
       errorMessage.value = err.message || 'An error occurred during sign up';
     }

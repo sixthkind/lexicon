@@ -4,11 +4,10 @@ class authUtils {
   static async register(
     input: { 
       email: string, 
-      password: string, 
-      firstName: string, 
-      lastName: string 
+      password: string,
     }) {
     return new Promise(async (resolve, reject) => {
+      console.log('register', input);
       try {
         // Create a new user in the 'users' collection with the provided input data
         await pb.collection("users").create({
@@ -20,10 +19,12 @@ class authUtils {
   
         try {
           // Send a verification email to the newly registered user
-          await this.sendVerificationEmail(input.email);
+          // await this.sendVerificationEmail(input.email);
 
           // Authenticate the user with the provided email and password
           await this.authenticate(input.email, input.password);
+
+          console.log('register success');
 
           // resolve this function
           resolve(true);
