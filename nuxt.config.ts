@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
   css: [
-    "~/assets/css/main.css", 
+    "~/assets/css/main.css",
+    "~/assets/css/components.css",
     "@fontsource/quicksand/400.css", 
     "@fontsource/quicksand/700.css"
   ],

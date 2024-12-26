@@ -1,12 +1,12 @@
 <script setup>
 definePageMeta({
   layout: "common",
-  middleware: "auth"
+  middleware: "auth",
 });
 </script>
 
 <template>
   <CommonContainer>
-    <CommonHero></CommonHero>
+    <CommonProfile />
   </CommonContainer>
 </template>

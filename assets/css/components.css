@@ -1,0 +1,39 @@
+.k-container {
+  width: 100%;
+  max-width: 620px;
+  margin: auto;
+  padding-bottom: 36px;
+}
+
+.k-item {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.k-chip {
+  display: inline-block;
+  padding: 0.15rem 0.65rem;
+  border-radius: 9999px; /* Full rounded corners */
+  font-size: 0.775rem; /* Text size */
+  font-weight: 700; /* Bold text */
+}
+
+.k-flex {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+}
+
+.unread-glow {
+  box-shadow: 0 0 8px rgba(246, 59, 215, 0.5);
+}
+
+.translucent {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+}
