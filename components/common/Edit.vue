@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div class="k-item">
+      <div class="k-item animated fadeInUp">
         <Vueform :schema="schema" v-model="data" @submit="handleSubmit" sync></Vueform>
       </div>
     </div>

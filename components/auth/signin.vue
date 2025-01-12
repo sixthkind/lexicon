@@ -59,8 +59,7 @@ const isSignIn = ref(true);
 const email = ref('');
 const password = ref('');
 const errorMessage = ref('');
-
-const environment = useRuntimeConfig().public.environment;
+// const environment = useRuntimeConfig().public.environment;
 
 function toggleAuthMode() {
   isSignIn.value = !isSignIn.value;
@@ -90,16 +89,12 @@ function validatePassword() {
 
 async function signUp() {
   if (validatePassword()) {
-    console.log('signUp', email.value, password.value);
     try {
       let message = await authUtils.register({
         email: email.value, 
         password: password.value
       });
-
-      console.log('signUp success: ', message);
-      console.log('pb.authStore.record: ', pb.authStore.record);
-      // window.location.href = '/';
+      window.location.href = '/';
     } catch (err) {
       errorMessage.value = err.message || 'An error occurred during sign up';
     }
