@@ -100,19 +100,19 @@
   const isError = ref(false);
   const errorMessage = ref('')
 
-  if (id) {
-    // If there is an id, get the record
-    const record = await pb.collection(type).getOne(id);
-    // Set the data to the record using schema keys
-    Object.keys(formSchema).forEach(key => {
-      if(record[key]) data.value[key] = record[key];
-    });    
-  }
-  
-  // add a button to the schema
-  schema.value = {
-    ...formSchema,
-    button: { type: 'button', "button-label": `${id ? 'Save' : 'Add'}`, submits: true, class: 'ml-auto font-bold' }
+  const init = async () => {
+    if (id) {
+      // If there is an id, get the record
+      const record = await pb.collection(type).getOne(id);
+      // Set the data to the record using schema keys
+      populateFormData(record); 
+    }
+    
+    // add a button to the schema
+    schema.value = {
+      ...formSchema,
+      button: { type: 'button', "button-label": `${id ? 'Save' : 'Add'}`, submits: true, class: 'ml-auto font-bold' }
+    }
   }
 
   const goBack = () => {
@@ -121,6 +121,19 @@
 
   const toggleConfirm = () => {
     isConfirm.value = !isConfirm.value;
+  }
+
+  const populateFormData = (record) => {
+    Object.keys(formSchema).forEach(key => {
+      if(record[key]) {
+        if(formSchema[key]?.type == 'date' && 'timezone' in record) {
+          // handle dates with timezone
+          data.value[key] = Utils.reverseFormatDateWithTimezoneToISO(record[key], record['timezone']);
+        } else {
+          data.value[key] = record[key];
+        }
+      }
+    });
   }
 
   const handleSubmit = async () => {
@@ -176,16 +189,11 @@
   }
 
   const formatDate = (item) => {
-    // Set any dates to UTC
-    let date;
-    if (item.slice(item.length - 5) == ".000Z") {
-      // add the timezone string if it isn't there.
-      // Note: It isn't there when vueform edits the time. If it only edits the date, it will be there.
-      date = new Date(String(item.replace(' ', 'T'))).toISOString();
-    } else {
-      date = new Date(String(item.replace(' ', 'T') + '.000Z')).toISOString();
+    let timezone = "UTC";
+    if(data.value["timezone"]) {
+      timezone = data.value["timezone"];
     }
-    return date;
+    return Utils.formatDateWithTimezoneToISO(item, timezone);
   };
 
   const printFormData = (formData) => {
@@ -208,7 +216,7 @@
     setTimeout(() => {
       isSuccess.value = false;
       window.history.back();
-    }, 2000);
+    }, 1000);
   }
 
   const updateItem = async () => {
@@ -218,7 +226,6 @@
       await pb.collection(type).update(id, formData);
       showSuccess();
     } catch (error) {
-      console.log("HERE");
       showError(error.message || 'Error updating item');
     }
   }
@@ -256,6 +263,7 @@
     goBack();
   }
 
+  init();
   isLoaded.value = true;
 </script>
 

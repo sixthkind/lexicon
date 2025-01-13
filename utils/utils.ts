@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon';
+
 class Utils {
   static singular(word: string) {
     // Handle regular plural patterns
@@ -59,6 +61,28 @@ class Utils {
     return word
       .replace(/([a-z])([A-Z])/g, '$1 $2')
       .toLowerCase();
+  }
+
+  static formatDateWithTimezoneToISO(date: string, timezone: string): string {
+    return DateTime.fromJSDate(new Date(date))
+      .setZone(timezone, { keepLocalTime: true })
+      .toUTC()
+      .toISO() ?? '';
+  }
+
+  static reverseFormatDateWithTimezoneToISO(date: string, timezone: string): string {
+    const isoDate = date.replace(' ', 'T');
+    const dt = DateTime.fromISO(isoDate);    
+    const converted = dt.setZone(timezone);    
+    return converted.toISO() ?? '';
+  }
+
+  static readableDateTime(dateString: string, timezone: string): string {
+    let date = Utils.reverseFormatDateWithTimezoneToISO(dateString, timezone);
+    let dt = DateTime.fromISO(date, { zone: timezone });
+    let formattedDate = dt.toFormat('LLLL d, yyyy');  // Long month name, day, year
+    let formattedTime = dt.toFormat('h:mm a');
+    return `${formattedDate} • ${formattedTime}`;
   }
 }
 
