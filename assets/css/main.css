@@ -11,7 +11,7 @@
 
 :root, :before, :after, * {
   --vf-primary: theme('colors.primary.DEFAULT');
-  --vf-primary-darker: theme('colors.primary.dark');
+  --vf-primary-darker: theme('colors.primary.600');
 }
 
 @keyframes fadeInUp {

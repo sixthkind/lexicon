@@ -17,9 +17,13 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "nuxt-icon",
-    "@vueform/nuxt"
+    "@vueform/nuxt",
+    "@nuxt/ui"
   ],
+
+  colorMode: {
+    preference: 'light'
+  },
 
   runtimeConfig: {
     public: {
