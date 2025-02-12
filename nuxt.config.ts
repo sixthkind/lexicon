@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   css: [
     "~/assets/css/main.css",
     "~/assets/css/components.css",
+    "~/assets/css/markdown.css",
     "@fontsource/quicksand/400.css", 
     "@fontsource/quicksand/700.css"
   ],
@@ -29,7 +30,9 @@ export default defineNuxtConfig({
     public: {
       environment: process.env.VITE_ENVIRONMENT,
       pocketbaseURL: process.env.VITE_POCKETBASE_URL,
-      openrouterApiKey: process.env.VITE_OPENROUTER_API_KEY
+      openrouterApiKey: process.env.VITE_OPENROUTER_API_KEY,
+      appName: 'project-6',
+      appURL: 'http://localhost:3000'
     }
   },
 
