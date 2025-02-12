@@ -55,31 +55,36 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref } from 'vue'
 import prompt from './prompt'
 import VueMarkdown from 'vue-markdown-render'
 import { sendChatMessage, generateTitle } from '~/utils/ai'
+import { addNote, getNotes } from '~/utils/notes'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const messagesContainer = ref(null)
 const newMessage = ref('')
 const isTyping = ref(false)
-const messages = ref(prompt)
+const messages = ref([{ role: 'system', content: prompt }])
 const hasFirstMessage = ref(false)
 const title = ref('')
 
-function scrollToBottom() {
-  nextTick(() => {
-    if (messagesContainer.value) {
-      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
+async function loadExistingNote() {
+  const noteId = route.params.id
+  if (noteId) {
+    const notes = getNotes()
+    const existingNote = notes.find(note => note.id === noteId)
+    if (existingNote) {
+      hasFirstMessage.value = true
+      title.value = existingNote.title
+      messages.value = [{ role: 'system', content: prompt }];
+      messages.value.push({ role: 'assistant', content: existingNote.note })
     }
-  })
+  }
 }
 
-watch(
-  messages,
-  () => scrollToBottom(),
-  { deep: true }
-)
+loadExistingNote()
 
 async function sendMessage() {
   if (!newMessage.value.trim()) return
@@ -107,8 +112,8 @@ async function sendMessage() {
         messages.value.push({ role: 'assistant', content: assistantMessage })
       }
     }
-    console.log("Done!");
-    console.log("assistantMessage", assistantMessage);
+
+    addNote(title.value, assistantMessage);
     
   } catch (error) {
     console.error('Error:', error)
@@ -118,12 +123,6 @@ async function sendMessage() {
     isTyping.value = false
   }
 }
-
-function goBack() {
-  window.history.back()
-}
-
-onMounted(scrollToBottom)
 </script>
 
 <style scoped>
