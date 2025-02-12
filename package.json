@@ -1,5 +1,5 @@
 {
-  "name": "@hewmanitarian/launchpad",
+  "name": "@sixthkind/lexicon",
   "version": "0.1.4",
   "private": true,
   "type": "module",
@@ -32,6 +32,8 @@
     "@fontsource/quicksand": "^5.1.0",
     "@vueform/nuxt": "^1.8.0",
     "luxon": "^3.5.0",
-    "pocketbase": "^0.22.1"
+    "openai": "^4.83.0",
+    "pocketbase": "^0.22.1",
+    "vue-markdown-render": "^2.2.1"
   }
 }

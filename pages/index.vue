@@ -7,6 +7,6 @@ definePageMeta({
 
 <template>
   <CommonContainer>
-    <CommonHero></CommonHero>
+    <CommonMain />
   </CommonContainer>
 </template>
