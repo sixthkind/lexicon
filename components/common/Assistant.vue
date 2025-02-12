@@ -30,8 +30,12 @@
       >
         <div 
           class="message-wrapper animated fadeInUp"
-          v-if="message.role !== 'system' && message.role !== 'user'" :class="['message', message.role === 'user' ? 'user-message' : 'assistant-message']">
-          <vue-markdown :source="message.content" />
+          v-if="message.role !== 'system' && message.role !== 'user'" 
+          :class="['message', message.role === 'user' ? 'user-message' : 'assistant-message']"
+        >
+          <div class="markdown-wrapper">
+            <vue-markdown :source="message.content" />
+          </div>
         </div>
       </div>
       <div v-if="isTyping" class="message-wrapper animated fadeInUp">
@@ -224,5 +228,84 @@ onMounted(scrollToBottom)
 @keyframes typing {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
+}
+
+/* Add these new styles for markdown content */
+:deep(.markdown-body) {
+  line-height: 1.6;
+}
+
+:deep(.markdown-body p) {
+  margin: 1em 0;
+}
+
+:deep(.markdown-body h1),
+:deep(.markdown-body h2),
+:deep(.markdown-body h3),
+:deep(.markdown-body h4),
+:deep(.markdown-body h5),
+:deep(.markdown-body h6) {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+:deep(.markdown-body ul),
+:deep(.markdown-body ol) {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+:deep(.markdown-body li) {
+  margin: 0.5em 0;
+}
+
+:deep(.markdown-body pre) {
+  margin: 1em 0;
+  padding: 1em;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+}
+
+:deep(.markdown-body code) {
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.markdown-wrapper :deep(p) {
+  margin: 1em 0;
+}
+
+.markdown-wrapper :deep(h1),
+.markdown-wrapper :deep(h2),
+.markdown-wrapper :deep(h3),
+.markdown-wrapper :deep(h4),
+.markdown-wrapper :deep(h5),
+.markdown-wrapper :deep(h6) {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.markdown-wrapper :deep(ul),
+.markdown-wrapper :deep(ol) {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.markdown-wrapper :deep(li) {
+  margin: 0.5em 0;
+}
+
+.markdown-wrapper :deep(pre) {
+  margin: 1em 0;
+  padding: 1em;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+}
+
+.markdown-wrapper :deep(code) {
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
 }
 </style>
