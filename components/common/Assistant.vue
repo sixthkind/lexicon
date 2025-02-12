@@ -2,7 +2,15 @@
   <div>
 
       <!-- Input Area -->
-      <div class="input-container animated fadeInUp">
+      <div v-if="!hasFirstMessage" class="input-container animated fadeInUp">
+        <button 
+          @click="sendMessage" 
+          class="send-button"
+          :disabled="!newMessage.trim()"
+        >
+          <Icon name="lucide:feather" size="1.4em" class="text-primary" />
+        </button>
+
         <input 
           v-model="newMessage" 
           @keyup.enter="sendMessage"
@@ -12,23 +20,17 @@
           ref="messageInput"
           autofocus
         >
-        <!-- <button 
-          @click="sendMessage" 
-          class="send-button"
-          :disabled="!newMessage.trim()"
-        >
-          <Icon name="lucide:send" size="1.4em" class="text-primary" />
-        </button> -->
       </div>
 
     <!-- Chat Messages -->
     <div class="messages-container" ref="messagesContainer">
       <div 
         v-for="(message, index) in messages" 
-        :key="index" 
-        class="message-wrapper animated fadeInUp"
+        :key="index"
       >
-        <div v-if="message.role !== 'system' && message.role !== 'user'" :class="['message', message.role === 'user' ? 'user-message' : 'assistant-message']">
+        <div 
+          class="message-wrapper animated fadeInUp"
+          v-if="message.role !== 'system' && message.role !== 'user'" :class="['message', message.role === 'user' ? 'user-message' : 'assistant-message']">
           <vue-markdown :source="message.content" />
         </div>
       </div>
@@ -76,6 +78,7 @@ const messagesContainer = ref(null)
 const newMessage = ref('')
 const isTyping = ref(false)
 const messages = ref(prompt)
+const hasFirstMessage = ref(false)
 
 function scrollToBottom() {
   nextTick(() => {
@@ -93,6 +96,9 @@ watch(
 
 async function sendMessage() {
   if (!newMessage.value.trim()) return
+
+  // Set hasFirstMessage to true when first message is sent
+  hasFirstMessage.value = true
 
   // Add user message
   messages.value.push({ role: 'user', content: newMessage.value })
@@ -137,31 +143,10 @@ onMounted(scrollToBottom)
 </script>
 
 <style scoped>
-.assistant-container {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  height: calc(100vh - 64px);
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-header {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-radius: 25px;
-}
-
 .messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 20px 40px;
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -171,47 +156,27 @@ onMounted(scrollToBottom)
   display: none; /* Chrome, Safari and Opera */
 }
 
-.message-wrapper {
-  display: flex;
-  margin-bottom: 12px;
+.assistant-message {
+  color: #3a4251;
 }
 
 .message {
-  max-width: 80%;
   padding: 12px 16px;
   border-radius: 16px;
   font-size: 0.95rem;
 }
 
-.user-message {
-  margin-left: auto;
-  background: #9370DB;
-  color: white;
-  border-bottom-right-radius: 4px;
-}
-
-.assistant-message {
-  margin-right: auto;
-  background: rgba(255, 255, 255, 0.6);
-  color: #4a5568;
-  border-bottom-left-radius: 4px;
-}
-
 .input-container {
   padding: 16px;
-  /* background: rgba(255, 255, 255, 0.4); */
-  backdrop-filter: blur(20px);
   display: flex;
-  gap: 12px;
   position: sticky;
   bottom: 0;
-  padding-bottom: 34px;
   border-radius: 25px;
 }
 
 .message-input {
   flex: 1;
-  padding: 12px 16px;
+  padding: 12px;
   border-radius: 25px;
   border: none;
   background: rgba(255, 255, 255, 0.6);
@@ -219,13 +184,12 @@ onMounted(scrollToBottom)
 }
 
 .send-button {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease;
 }
 

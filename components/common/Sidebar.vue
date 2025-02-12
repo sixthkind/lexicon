@@ -13,9 +13,7 @@
 
     <!-- Main Content -->
     <div class="flex-1 overflow-auto">
-      <div class="p-6">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
