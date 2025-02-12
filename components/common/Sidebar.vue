@@ -22,9 +22,22 @@
 const route = useRoute();
 
 // Navigation items
-const navigation = [
-  
+const notes = [
+  {
+    title: 'Note 1',
+    note: 'This is a note',
+    created: new Date()
+  },
 ];
+
+const navigation = computed(() => {
+  return notes.map(note => ({
+    label: note.title,
+    // Preserve other navigation-related properties
+    icon: 'document',
+    to: `/notes/${note.title.toLowerCase().replace(/\s+/g, '-')}` // Create URL-friendly path
+  }));
+});
 
 // Determine which section to show based on route
 const currentSection = computed(() => {
@@ -35,8 +48,12 @@ const currentSection = computed(() => {
 </script>
 
 <style scoped>
-/* Ensure the dashboard takes full height */
-.h-screen {
-  height: calc(100vh - 120px); /* Adjust based on your navbar height */
-}
+  /* Ensure the dashboard takes full height */
+  .h-screen {
+    height: calc(100vh - 120px); /* Adjust based on your navbar height */
+  }
+
+  .k-item {
+    padding: 0;
+  }
 </style>

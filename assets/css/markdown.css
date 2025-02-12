@@ -1,9 +1,15 @@
+@import 'katex/dist/katex.min.css';
+
 .markdown-body {
   line-height: 1.6;
 }
 
 .markdown-body p {
   margin: 1em 0;
+}
+
+.markdown-body a {
+  @apply text-primary hover:text-primary/80;
 }
 
 .markdown-body h1,
@@ -30,11 +36,21 @@
   margin: 1em 0;
   padding: 1em;
   background-color: #f6f8fa;
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .markdown-body code {
-  background-color: #f6f8fa;
-  padding: 0.2em 0.4em;
+  line-height: 1.2 !important;
   border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1em 0;
 }

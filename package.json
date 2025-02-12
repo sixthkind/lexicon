@@ -30,7 +30,10 @@
   },
   "dependencies": {
     "@fontsource/quicksand": "^5.1.0",
+    "@mdit/plugin-katex": "^0.16.7",
+    "@mdit/plugin-mathjax": "^0.16.0",
     "@vueform/nuxt": "^1.8.0",
+    "katex": "^0.16.21",
     "luxon": "^3.5.0",
     "openai": "^4.83.0",
     "pocketbase": "^0.22.1",

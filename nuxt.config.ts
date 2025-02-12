@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "~/assets/css/main.css",
     "~/assets/css/components.css",
     "~/assets/css/markdown.css",
+    "~/assets/css/animate.css",
     "@fontsource/quicksand/400.css", 
     "@fontsource/quicksand/700.css"
   ],
