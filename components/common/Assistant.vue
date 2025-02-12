@@ -52,10 +52,10 @@ import prompt from './prompt'
 import VueMarkdown from 'vue-markdown-render'
 
 const config = useRuntimeConfig();
-const openrouterAssetID = String(config.public.openrouterAssetID);
+const openrouterApiKey = String(config.public.openrouterApiKey);
 import OpenAI from 'openai'
-// const API_KEY = (await pb.collection('_assets').getOne(openrouterAssetID)).title;
-const API_KEY = "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";
+const API_KEY = openrouterApiKey;
+
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: API_KEY,
