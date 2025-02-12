@@ -36,10 +36,11 @@
       </div>
       <div v-if="isTyping" class="message-wrapper animated fadeInUp">
         <div class="message assistant-message">
+          <Icon name="lucide:feather" size="1.4em" class="text-primary typing-icon" />
           <div class="typing-indicator">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span class="bg-primary"></span>
+            <span class="bg-primary"></span>
+            <span class="bg-primary"></span>
           </div>
         </div>
       </div>
@@ -76,6 +77,7 @@ const openai = new OpenAI({
 
 const messagesContainer = ref(null)
 const newMessage = ref('')
+// const isTyping = ref(true)
 const isTyping = ref(false)
 const messages = ref(prompt)
 const hasFirstMessage = ref(false)
@@ -198,15 +200,20 @@ onMounted(scrollToBottom)
   cursor: not-allowed;
 }
 
+.typing-icon {
+  margin-left: -30px;
+  margin-top: 10px;
+}
+
 .typing-indicator {
   display: flex;
   gap: 4px;
+  margin-top: -14px;
 }
 
 .typing-indicator span {
   width: 6px;
   height: 6px;
-  background: #4a5568;
   border-radius: 50%;
   animation: typing 1s infinite ease-in-out;
 }
