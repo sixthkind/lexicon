@@ -1,12 +1,12 @@
 {
   "name": "@sixthkind/lexicon",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "concurrently \"npm run dev\" \"npm run pb\"",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "PORT=3010 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -15,7 +15,7 @@
     "env": "source .env.production && scp ./.env.production root@$SERVER_HOST:/$SERVER_USER/$APP_PATH/.env",
     "deploy": "./deploy.sh",
     "all": "npm run generate && npm run deploy",
-    "pb": "cd ./pocketbase && ./pocketbase serve"
+    "pb": "cd ./pocketbase && ./pocketbase serve --http=0.0.0.0:8010"
   },
   "devDependencies": {
     "@nuxt/ui": "^2.21.0",
