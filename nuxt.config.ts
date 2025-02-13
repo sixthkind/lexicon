@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     public: {
       environment: process.env.VITE_ENVIRONMENT,
       pocketbaseURL: process.env.VITE_POCKETBASE_URL,
-      openrouterApiKey: process.env.VITE_OPENROUTER_API_KEY,
+      openrouterAssetID: process.env.VITE_OPENROUTER_ASSET_ID,
       appName: 'project-6',
       appURL: 'http://localhost:3000'
     }

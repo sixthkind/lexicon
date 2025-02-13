@@ -1,14 +1,17 @@
 import OpenAI from 'openai'
+import { pb } from './pb';
 import { useRuntimeConfig } from '#imports'
 
 const config = useRuntimeConfig()
-const openrouterApiKey = String(config.public.openrouterApiKey)
 const appName = String(config.public.appName)
 const appURL = String(config.public.appURL)
+const openrouterAssetID = String(config.public.openrouterAssetID);
+console.log("openrouterAssetID: ", openrouterAssetID)
+const API_KEY = (await pb.collection('_assets').getOne(openrouterAssetID)).title;
 
 export const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: openrouterApiKey,
+  apiKey: API_KEY,
   dangerouslyAllowBrowser: true,
   defaultHeaders: {
     'HTTP-Referer': appURL,
