@@ -21,8 +21,14 @@
     >
   </div>
 
-  <div v-if="hasFirstMessage" class="title-container animated fadeInUp">
-    <h1 class="title">{{ title }}</h1> 
+  <div v-if="hasFirstMessage"
+    class="title-container animated fadeInUp">
+      <h1 class="title">{{ title }}</h1> 
+  </div>
+
+  <div v-if="hasFirstMessage" 
+    class="photo-search-container animated fadeInUp">
+      <CommonPhotoSearch :input="title" @select="selectImage" />
   </div>
 
   <!-- Chat Messages -->
@@ -123,6 +129,11 @@ async function sendMessage() {
     isTyping.value = false
   }
 }
+
+function selectImage(image) {
+  console.log(image)
+}
+
 </script>
 
 <style scoped>
