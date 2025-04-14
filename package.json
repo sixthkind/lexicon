@@ -1,6 +1,6 @@
 {
   "name": "@sixthkind/lexicon",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,8 @@
     "version": "echo $npm_package_name v$npm_package_version",
     "env": "source .env.production && scp ./.env.production root@$SERVER_HOST:/$SERVER_USER/$APP_PATH/.env",
     "deploy": "./deploy.sh",
-    "all": "npm run generate && npm run deploy",
+    "all": "npm run generate && npm run cp && npm run pb",
+    "cp": "cp -r .output/public/* pocketbase/pb_public",
     "pb": "cd ./pocketbase && ./pocketbase serve --http=0.0.0.0:8091"
   },
   "devDependencies": {
